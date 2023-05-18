@@ -12,7 +12,7 @@
 }
 
 @font-face {
-    font-family: 'helvetica_neue_lt_std95_black';
+    font-family: 'helvetica-neue';
     src: url('helvetica_neue_lt_std_95_black-webfont.woff2') format('woff2'),
          url('helvetica_neue_lt_std_95_black-webfont.woff') format('woff');
     font-weight: normal;
