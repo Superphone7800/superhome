@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'HelveticaNeue LT 95';
-    src: url('https://superphonerecordings.com/'HelveticaNeueLT-Black.woff2') format('woff2'),
-        url('https://superphonerecordings.com/HelveticaNeueLT-Black.woff') format('woff');
+    src: url('HelveticaNeueLT-Black.woff2') format('woff2'),
+        url('HelveticaNeueLT-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
