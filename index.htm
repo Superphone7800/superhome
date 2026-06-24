@@ -119,6 +119,129 @@ Recordings</font></p>
 <p style="line-height: 150%">&nbsp;</p>
 <p style="line-height: 150%">&nbsp;</p>
 
+<!-- Move this anywhere on the page and style/wrap it however you like -->
+<!-- in FrontPage. The script only needs an element with               -->
+<!-- id="prediction" to write the result into.                         -->
+<p id="prediction">Loading today's prediction...</p>
+
+<!-- This stuff should be at the very end of the page -->
+<script src="stringalong.js"></script>
+<script>
+(function () {
+
+  // Add or edit lines freely. This is the same language the web app uses. The
+  // only thing you have to avoid typing is a dollar sign immediately followed
+  // by a { brace (JS treats this specially)
+  var source = `
+$name : Superphone Daily Prediction
+$amount : 1
+
+$you
+You
+You
+Someone close to you
+
+$person
+the president
+your landlord
+a man named Gary
+a stranger at the bus stop
+someone you went to high school with
+your boss
+a local news anchor
+your future self
+
+$thing
+some new pants
+a suspicious sandwich
+exactly $4.00
+an off-brand energy drink
+a haunted lamp
+three identical hats
+a parking ticket
+
+$place
+down the stairs
+into a fountain
+asleep on the bus
+into a new hobby
+behind on rent
+in love with a potted plant
+
+$mishap
+fall [place]
+lose an argument with a vending machine
+receive a text meant for someone else
+forget why you walked into the room
+be mildly inconvenienced by a bird
+
+$action
+buy [thing]
+discover [thing] in your couch
+finally return [thing]
+narrowly avoid [thing]
+become weirdly attached to [thing]
+
+$omen
+the planets are not aligned in your favor
+a great opportunity smells faintly of pennies
+
+$personalpred
+[you] will [action]
+[you] will [mishap]
+[you] will [action], and kind of like it
+
+$worldpred
+[Person] will [mishap]
+[Person] will [action]
+
+$cosmicpred
+Today, [omen]
+The stars suggest you [action] before noon
+
+$>prediction
+[personalpred] {55%}
+[worldpred] {30%}
+[cosmicpred] {15%}
+`;
+
+  // Pick today's prediction
+  // Seeding with the date makes the result identical for every visitor all
+  // (local) day
+  function todaySeed() {
+    var d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  // Snag a reference to whatever single element on the page has id="prediction"
+  var el = document.getElementById('prediction');
+  // if there was one, create a Stringalong generator with the source script,
+  // and replace the text content with a Stringalong generation using today's
+  // date as the seed
+  if (el) {
+    var gen = new Stringalong(source);
+    el.textContent = gen.generate({ count: 1, seed: todaySeed() })[0];
+  }
+
+  /* ALTERNATE: keep the grammar in a separate predictions.txt file instead of
+     inlining it above. Delete the `source` variable, then use this instead in
+     the if(el) block:
+
+     fetch('predictions.txt')
+       .then(function (r) { return r.text(); })
+       .then(function (src) {
+         var gen = new Stringalong(src);
+         el.textContent = gen.generate({ count: 1, seed: todaySeed() })[0];
+       })
+       .catch(function () {
+         el.textContent = 'The spirits are unavailable. Try again tomorrow.';
+       });
+   */
+
+
+})();
+</script>
+
 </body>
 
 </html>
